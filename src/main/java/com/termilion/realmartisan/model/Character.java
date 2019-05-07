@@ -37,11 +37,13 @@ public class Character {
     @Column(name = "profession", nullable = false)
     private String profession;
 
-    @Column(name = "region", nullable = false)
-    private String region;
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id", nullable = true)
+    private Region region;
 
-    @Column(name = "ethnicity", nullable = false)
-    private String ethnicity;
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id", nullable = true)
+    private Ethnicity ethnicity;
 
     // Constructors
 
@@ -52,8 +54,8 @@ public class Character {
                      String skin, String hair,
                      String eyes, String size,
                      String age, String profession,
-                     String[] features, String region,
-                     String ethnicity) {
+                     String[] features, Region region,
+                     Ethnicity ethnicity) {
         this.name = name;
         this.skin = skin;
         this.hair = hair;
@@ -87,9 +89,7 @@ public class Character {
                 '}';
     }
 
-
     // Getters / Setters
-
 
     public long getId() {
         return id;
@@ -159,19 +159,19 @@ public class Character {
         this.profession = profession;
     }
 
-    public String getRegion() {
+    public Region getRegion() {
         return region;
     }
 
-    public void setRegion(String region) {
+    public void setRegion(Region region) {
         this.region = region;
     }
 
-    public String getEthnicity() {
+    public Ethnicity getEthnicity() {
         return ethnicity;
     }
 
-    public void setEthnicity(String ethnicity) {
+    public void setEthnicity(Ethnicity ethnicity) {
         this.ethnicity = ethnicity;
     }
 

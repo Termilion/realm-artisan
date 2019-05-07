@@ -2,14 +2,10 @@ package com.termilion.realmartisan.model;
 
 import com.google.common.collect.ImmutableRangeMap;
 import com.google.common.collect.Range;
-import org.jdom2.Document;
-import org.jdom2.Element;
-import org.jdom2.input.SAXBuilder;
-import org.jdom2.output.XMLOutputter;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
+import javax.json.*;
+import java.io.StringReader;
+import java.util.List;
 
 
 public class Distribution {
@@ -28,9 +24,22 @@ public class Distribution {
     }
 
     public Distribution(String distXML){
-        this.distMap = fromXML(distXML);
+        this.distMap = fromJson(distXML);
         this.maxValue = distMap.asDescendingMapOfRanges()
                 .keySet().asList().get(0).upperEndpoint();
+    }
+
+    public Distribution(List<String> distList) {
+        ImmutableRangeMap.Builder<Integer, String> builder =
+                new ImmutableRangeMap.Builder<>();
+        int[] lowerBound = new int[]{1};
+        distList.forEach(value -> {
+            int upperBound = lowerBound[0] + 10;
+            builder.put(Range.closed(lowerBound[0], upperBound), value);
+            lowerBound[0] = upperBound+1;
+        });
+        this.distMap = builder.build();
+        this.maxValue = lowerBound[0]+1;
     }
 
     // Methods
@@ -43,43 +52,44 @@ public class Distribution {
         return distMap.get(roller.roll(maxValue));
     }
 
-    private ImmutableRangeMap<Integer, String> fromXML(String distXML) {
-        final ImmutableRangeMap.Builder<Integer, String> builder = new ImmutableRangeMap.Builder<Integer, String>();
-        try {
-            InputStream stream = new ByteArrayInputStream(distXML.getBytes(StandardCharsets.UTF_8));
-            Document doc = new SAXBuilder().build(stream);
-            Element root = doc.getRootElement();
-            final int[] nextLowerBound = new int[]{1};
-            root.getChildren().forEach(node -> {
-              String key = node.getAttribute("key").getValue();
-              int range = Integer.parseInt(node.getAttribute("range").getValue());
-              int nextUpperBound = nextLowerBound[0] + range-1;
-              builder.put(Range.closed(nextLowerBound[0],nextUpperBound), key);
-              nextLowerBound[0] = nextUpperBound+1;
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+    private ImmutableRangeMap<Integer, String> fromJson(String distJson) {
+        ImmutableRangeMap.Builder<Integer, String> builder = new ImmutableRangeMap.Builder<Integer, String>();
+        JsonReader reader = Json.createReader(new StringReader(distJson));
+        JsonObject json = reader.readObject();
+        JsonArray dist = json.getJsonArray("distribution");
+        final int[] nextLowerBound = new int[]{1};
+        dist.forEach(element -> {
+            JsonObject object  = element.asJsonObject();
+            String key = object.getString("key");
+            int range = Integer.parseInt(object.get("range").toString());
+            int nextUpperBound = nextLowerBound[0] + range-1;
+            builder.put(Range.closed(nextLowerBound[0],nextUpperBound), key);
+            nextLowerBound[0] = nextUpperBound+1;
+        });
         return builder.build();
     }
 
-    public String toXML() {
-        Element root = new Element("distribution");
+    public String toJson() {
+        JsonObjectBuilder builder = Json.createObjectBuilder();
+        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
         distMap.asMapOfRanges().forEach((rangeObject, key) -> {
+            JsonObjectBuilder elementBuilder = Json.createObjectBuilder();
             int range = rangeObject.upperEndpoint()+1 - rangeObject.lowerEndpoint();
-            Element element = new Element("element");
-            element.setAttribute("key", key);
-            element.setAttribute("range", String.format("%s", range));
-            root.addContent(element);
+            elementBuilder.add("key", key);
+            elementBuilder.add("range", range);
+            arrayBuilder.add(elementBuilder.build());
         });
-        return new XMLOutputter().outputString(new Document(root));
+        builder.add("distribution", arrayBuilder.build());
+
+        return builder.build().toString();
     }
 
     // Overrides
 
     @Override
     public String toString() {
-        return toXML();
+        return toJson();
     }
 
     // Getters and Setters

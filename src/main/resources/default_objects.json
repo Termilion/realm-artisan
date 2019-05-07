@@ -1,0 +1,364 @@
+{
+  "objects": {
+    "age": {
+      "distribution":[
+        {
+          "key": "child",
+          "range": 5
+        },
+        {
+          "key": "young",
+          "range": 10
+        },
+        {
+          "key": "teen",
+          "range": 20
+        },
+        {
+          "key": "adult",
+          "range": 40
+        },
+        {
+          "key": "mature",
+          "range": 20
+        },
+        {
+          "key": "old",
+          "range": 5
+        }
+      ]
+    },
+    "size": {
+      "distribution": [
+        {
+          "key": "150",
+          "range": 5
+        },
+        {
+          "key": "160",
+          "range": 15
+        },
+        {
+          "key": "170",
+          "range": 25
+        },
+        {
+          "key": "180",
+          "range": 35
+        },
+        {
+          "key": "190",
+          "range": 15
+        },
+        {
+          "key": "200",
+          "range": 5
+        }
+      ]
+    },
+    "skinTone": {
+      "distribution": [
+        {
+          "key": "snow white",
+          "range": 5
+        },
+        {
+          "key": "pale",
+          "range": 25
+        },
+        {
+          "key": "tanned",
+          "range": 40
+        },
+        {
+          "key": "dark",
+          "range": 25
+        },
+        {
+          "key": "black",
+          "range": 5
+        }
+      ]
+    },
+    "hairTone": {
+      "distribution": [
+        {
+          "key": "white",
+          "range": 5
+        },
+        {
+          "key": "blonde",
+          "range": 30
+        },
+        {
+          "key": "brown",
+          "range": 30
+        },
+        {
+          "key": "red",
+          "range": 5
+        },
+        {
+          "key": "black",
+          "range": 30
+        }
+      ]
+    },
+    "eyeTone": {
+      "distribution": [
+        {
+          "key": "grey",
+          "range": 10
+        },
+        {
+          "key": "blue",
+          "range": 25
+        },
+        {
+          "key": "brown",
+          "range": 35
+        },
+        {
+          "key": "green",
+          "range": 25
+        },
+        {
+          "key": "lavender",
+          "range": 5
+        }
+      ]
+    },
+    "professions": {
+      "distribution": [
+        {
+          "key": "smith",
+          "range": 3
+        },
+        {
+          "key": "hunter",
+          "range": 3
+        },
+        {
+          "key": "fisherman",
+          "range": 3
+        },
+        {
+          "key": "artist",
+          "range": 2
+        },
+        {
+          "key": "author",
+          "range": 2
+        },
+        {
+          "key": "composer",
+          "range": 2
+        },
+        {
+          "key": "poet",
+          "range": 2
+        },
+        {
+          "key": "hawker",
+          "range": 1
+        },
+        {
+          "key": "falconer",
+          "range": 1
+        },
+        {
+          "key": "rat catcher",
+          "range": 2
+        },
+        {
+          "key": "armorer",
+          "range": 3
+        },
+        {
+          "key": "saddler",
+          "range": 3
+        },
+        {
+          "key": "blacksmith",
+          "range": 3
+        },
+        {
+          "key": "fletcher",
+          "range": 3
+        },
+        {
+          "key": "lumberjack",
+          "range": 3
+        },
+        {
+          "key": "courier",
+          "range": 3
+        },
+        {
+          "key": "shoemaker",
+          "range": 3
+        },
+        {
+          "key": "jeweler",
+          "range": 2
+        },
+        {
+          "key": "barkeep",
+          "range": 2
+        },
+        {
+          "key": "noble",
+          "range": 1
+        },
+        {
+          "key": "knight",
+          "range": 2
+        },
+        {
+          "key": "guardian",
+          "range": 2
+        },
+        {
+          "key": "sellsword",
+          "range": 3
+        },
+        {
+          "key": "cutpurse",
+          "range": 2
+        },
+        {
+          "key": "fence",
+          "range": 1
+        },
+        {
+          "key": "bard",
+          "range": 2
+        },
+        {
+          "key": "scholar",
+          "range": 2
+        },
+        {
+          "key": "prostitute",
+          "range": 2
+        },
+        {
+          "key": "citywatch",
+          "range": 3
+        },
+        {
+          "key": "priest",
+          "range": 2
+        },
+        {
+          "key": "apothecary",
+          "range": 2
+        },
+        {
+          "key": "librarian",
+          "range": 2
+        },
+        {
+          "key": "scribe",
+          "range": 2
+        },
+        {
+          "key": "tutor",
+          "range": 1
+        },
+        {
+          "key": "herbalist",
+          "range": 3
+        },
+        {
+          "key": "farmer",
+          "range": 4
+        },
+        {
+          "key": "philosopher",
+          "range": 1
+        },
+        {
+          "key": "sailor",
+          "range": 3
+        },
+        {
+          "key": "navigator",
+          "range": 1
+        },
+        {
+          "key": "lawyer",
+          "range": 1
+        },
+        {
+          "key": "barber",
+          "range": 2
+        },
+        {
+          "key": "beggar",
+          "range": 3
+        },
+        {
+          "key": "waiter",
+          "range": 2
+        },
+        {
+          "key": "vagabond",
+          "range": 2
+        },
+        {
+          "key": "housewife/-man",
+          "range": 3
+        },
+        {
+          "key": "doctor",
+          "range": 2
+        },
+        {
+          "key": "cook",
+          "range": 3
+        },
+        {
+          "key": "pilgrim",
+          "range": 3
+        },
+        {
+          "key": "executioner",
+          "range": 1
+        },
+        {
+          "key": "miller",
+          "range": 3
+        },
+        {
+          "key": "guide",
+          "range": 1
+        },
+        {
+          "key": "fortune teller",
+          "range": 1
+        },
+        {
+          "key": "gardener",
+          "range": 2
+        },
+        {
+          "key": "spy",
+          "range": 2
+        },
+        {
+          "key": "shopkeeper",
+          "range": 4
+        },
+        {
+          "key": "trader",
+          "range": 3
+        },
+        {
+          "key": "arcanist",
+          "range": 1
+        }
+      ]
+    }
+  }
+}

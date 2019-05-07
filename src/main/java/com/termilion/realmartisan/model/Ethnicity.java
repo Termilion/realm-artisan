@@ -12,25 +12,25 @@ public class Ethnicity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "skinTones", nullable = false, length = 500)
+    @Column(name = "skinTones", nullable = false, length = 1000)
     private String skinTones;
 
-    @Column(name = "hairTones", nullable = false, length = 500)
+    @Column(name = "hairTones", nullable = false, length = 1000)
     private String hairTones;
 
-    @Column(name = "eyeTones", nullable = false, length = 500)
+    @Column(name = "eyeTones", nullable = false, length = 1000)
     private String eyeTones;
 
-    @Column(name = "age", nullable = false, length = 500)
+    @Column(name = "age", nullable = false, length = 1000)
     private String age;
 
-    @Column(name = "size", nullable = false, length = 500)
+    @Column(name = "size", nullable = false, length = 1000)
     private String size;
 
     @Column(name = "features", nullable = false)
     private String[] features;
 
-    @Column(name = "description", nullable = false, length = 500)
+    @Column(name = "description", nullable = false, length = 1000)
     private String description;
 
 // -------------------- methods --------------------
@@ -74,22 +74,20 @@ public class Ethnicity {
         this.description = description;
     }
 
-    public Character rollCharacter(String name, String profession, String region) {
+    public Character rollCharacter(String name, String profession, Region region) {
         return rollCharacter(name, profession, region, new DiceRoller(20));
     }
 
-    public Character rollCharacter(String name, String profession, String region, DiceRoller roller) {
+    public Character rollCharacter(String name, String profession, Region region, DiceRoller roller) {
         int numFeat = (roller.roll(this.features.length)/2)+1;
         String skinTone = rollDistribution(skinTones, roller);
         String hairTone = rollDistribution(hairTones, roller);
         String eyeTone = rollDistribution(eyeTones, roller);
         String charAge = rollDistribution(age, roller);
         String charSize = rollDistribution(size, roller);
-        String[] charFeatures = new String[numFeat];
-        for (int i = 0; i < numFeat; i++) {
-            charFeatures[i] = (roller.randomElement(features));
-        }
-        return new Character(name, skinTone, hairTone, eyeTone, charSize, charAge, profession, charFeatures, region, String.format("%s", this.id));
+        String[] charFeatures = roller.randomSubset(features, numFeat).toArray(new String[0]);
+
+        return new Character(name, skinTone, hairTone, eyeTone, charSize, charAge, profession, charFeatures, region, this);
     }
 
     public String rollDistribution(String xml){
