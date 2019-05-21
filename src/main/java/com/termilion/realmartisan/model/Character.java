@@ -43,7 +43,7 @@ public class Character {
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", nullable = true)
-    private Ethnicity ethnicity;
+    private Group group;
 
     // Constructors
 
@@ -55,7 +55,7 @@ public class Character {
                      String eyes, String size,
                      String age, String profession,
                      String[] features, Region region,
-                     Ethnicity ethnicity) {
+                     Group group) {
         this.name = name;
         this.skin = skin;
         this.hair = hair;
@@ -65,7 +65,7 @@ public class Character {
         this.profession = profession;
         this.features = features;
         this.region = region;
-        this.ethnicity = ethnicity;
+        this.group = group;
     }
 
     // Methods
@@ -83,7 +83,7 @@ public class Character {
                 ", size='" + size + '\'' +
                 ", age=" + age + '\'' +
                 ", region=" + region + '\'' +
-                ", ethnicity=" + ethnicity + '\'' +
+                ", group=" + group + '\'' +
                 ", profession=" + profession + '\'' +
                 ", features=" + Arrays.toString(features) +
                 '}';
@@ -167,12 +167,12 @@ public class Character {
         this.region = region;
     }
 
-    public Ethnicity getEthnicity() {
-        return ethnicity;
+    public Group getGroup() {
+        return group;
     }
 
-    public void setEthnicity(Ethnicity ethnicity) {
-        this.ethnicity = ethnicity;
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
     public void setAll(Character charDetails){
@@ -185,6 +185,6 @@ public class Character {
         this.setProfession(charDetails.getProfession());
         this.setFeatures(charDetails.getFeatures());
         this.setRegion(charDetails.getRegion());
-        this.setEthnicity(charDetails.getEthnicity());
+        this.setGroup(charDetails.getGroup());
     }
 }

@@ -3,8 +3,8 @@ package com.termilion.realmartisan.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ethnicities")
-public class Ethnicity {
+@Table(name = "groups")
+public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -35,16 +35,16 @@ public class Ethnicity {
 
 // -------------------- methods --------------------
 
-    public Ethnicity() {}
+    public Group() {}
 
-    private Ethnicity(String name,
-                      String skinTones,
-                      String hairTones,
-                      String eyeTones,
-                      String age,
-                      String size,
-                      String[] features,
-                      String description) {
+    private Group(String name,
+                  String skinTones,
+                  String hairTones,
+                  String eyeTones,
+                  String age,
+                  String size,
+                  String[] features,
+                  String description) {
         this.name = name;
         this.skinTones = skinTones;
         this.hairTones = hairTones;
@@ -55,15 +55,15 @@ public class Ethnicity {
         this.description = description;
     }
 
-    private Ethnicity(String name,
-                      Distribution skinTones,
-                      Distribution hairTones,
-                      Distribution eyeTones,
-                      Distribution sex,
-                      Distribution age,
-                      Distribution size,
-                      String[] features,
-                      String description) {
+    private Group(String name,
+                  Distribution skinTones,
+                  Distribution hairTones,
+                  Distribution eyeTones,
+                  Distribution sex,
+                  Distribution age,
+                  Distribution size,
+                  String[] features,
+                  String description) {
         this.name = name;
         this.skinTones = skinTones.toString();
         this.hairTones = hairTones.toString();
@@ -173,15 +173,15 @@ public class Ethnicity {
         this.description = description;
     }
 
-    public void setAll(Ethnicity ethnicityDetails) {
-        setFeatures(ethnicityDetails.getFeatures());
-        setDescription(ethnicityDetails.getDescription());
-        setEyeTones(ethnicityDetails.getEyeTones());
-        setHairTones(ethnicityDetails.getHairTones());
-        setSkinTones(ethnicityDetails.getSkinTones());
-        setSize(ethnicityDetails.getSize());
-        setAge(ethnicityDetails.getAge());
-        setName(ethnicityDetails.getName());
+    public void setAll(Group groupDetails) {
+        setFeatures(groupDetails.getFeatures());
+        setDescription(groupDetails.getDescription());
+        setEyeTones(groupDetails.getEyeTones());
+        setHairTones(groupDetails.getHairTones());
+        setSkinTones(groupDetails.getSkinTones());
+        setSize(groupDetails.getSize());
+        setAge(groupDetails.getAge());
+        setName(groupDetails.getName());
     }
 }
 

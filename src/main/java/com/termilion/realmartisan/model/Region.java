@@ -47,9 +47,9 @@ public class Region {
 
     // Methods
 
-    public Character rollCharacter(String name, Ethnicity ethnicity) throws ResourceNotFoundException {
+    public Character rollCharacter(String name, Group group) throws ResourceNotFoundException {
         String profession = new Distribution(this.professions).roll();
-        return ethnicity.rollCharacter(name, profession, this);
+        return group.rollCharacter(name, profession, this);
     }
 
     public void addSubregion(Region region){
